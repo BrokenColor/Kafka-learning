@@ -5,7 +5,7 @@
    - **存储系统**：Kafka把消息持久化到磁盘，相比于其他基于内存存储的系统而言，有效地降低了数据丢失的风险 也正是得益于 Kafka 的消息持久化功能和多副本机制，我们可以把 Kafka 作为长期的数据存储系统来使用，只需要把对应的数据保留策略设置为“永久”或启用主题的日志压缩功能即可
    - **流式处理平台**：Kafka不仅为每个流行的流式处理框架提供了可靠的数据来源，还供了一个完整的流式处理类库，比如窗口、连接、变换和聚合等各类操作
 ## kafka体系结构
-![kafka体系结构](https://github.com/BrokenColor/Kafka-learning/blob/master/files/kafka%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.jpg)
+![kafka体系结构](https://github.com/BrokenColor/Kafka-learning/blob/master/files/kafka体系结构.jpg)
 ##### kafak中的术语
 +  **Producer**(生产者)：发送消息的一方。生产者负责创建消息然后将其投递到Kafka中
 +  **Consumer**(消费者)：接收消息的一方。消费者连接到 Kafka 上并接收消息，进而进行相应的业务逻辑处理
@@ -16,7 +16,7 @@
   
 ##### 多副本架构
 Kafka集群中有4个broker，某个主题中有3个分区，且副本因子（即副本个数〉也为3个。
-![kafka多副本架构](https://github.com/BrokenColor/Kafka-learning/blob/master/files/%E5%A4%9A%E5%89%AF%E6%9C%AC%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.jpg)
+![kafka多副本架构](https://github.com/BrokenColor/Kafka-learning/blob/master/files/多副本体系结构.jpg)
 
 Kafka 为分区引入了*多副本Replica机制*， 通过增加副本数量可以提升容灾能力。同一分区的不同副本中*保存的是相同*的消息（在同一时刻，副本之间并非完全样），副本之间是*一主多从*的关系，其中leader副本负责处理读写请求 follower副本只负责与leader副本的消息同步。副本处于不同的broker，当leader副本出现故障时，从follower副本中重新选举新的leader本对外提供服务。 Kafka通过多副本机制实现了故障的自动转移，当Kafka集群中某个 broker 失效时仍然能保证服务可用
 +  **AR**(Assigned Replicas)：分区中的所有副本统称
