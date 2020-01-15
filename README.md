@@ -19,4 +19,9 @@ Kafka集群中有4个broker，某个主题中有3个分区，且副本因子（�
 ![kafka多副本架构](https://github.com/BrokenColor/Kafka-learning/blob/master/files/%E5%A4%9A%E5%89%AF%E6%9C%AC%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.jpg)
 
 Kafka 为分区引入了*多副本Replica机制*， 通过增加副本数量可以提升容灾能力。同一分区的不同副本中*保存的是相同*的消息（在同一时刻，副本之间并非完全样），副本之间是*一主多从*的关系，其中leader副本负责处理读写请求 follower副本只负责与leader副本的消息同步。副本处于不同的broker，当leader副本出现故障时，从follower副本中重新选举新的leader本对外提供服务。 Kafka通过多副本机制实现了故障的自动转移，当Kafka集群中某个 broker 失效时仍然能保证服务可用
-
++  **AR**(Assigned Replicas)：分区中的所有副本统称
++  **ISR**(In-Sync Replicas)：所有与leader副本保持一定程度同步的副本（包括leader副本在内）
++  **OSR**(Out-of-Sync Replicas)：与leader副本同步滞后过多的副本（不包leader副本）
++  **HW**(High Watermark)：俗称高水位，它标识个特定的消息偏移量（offset），消费者只能拉取到这个offset前的消息
++  **LEO**(Log End Offset)：标识当前日志文件中下一条待写入消息的offset
+![kafka分区中偏移量说明](https://github.com/BrokenColor/Kafka-learning/blob/master/files/分区中偏移量说明.png)
