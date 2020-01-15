@@ -15,4 +15,5 @@
 +  **offset**(偏移量)：消息在被追加到分区日志、文件的时候都会分配一个特定的偏移量（ offset ）。 offset 是消息在分区中的唯一标识， Kafka 通过它来保证消息在分区内的顺序性，不过 offset 并不跨越分区，也就是说， Kafka 保证的是分区有序而不是主题有序。
 +  
 +  
+##### 多副本架构
 ![kafka多副本架构](https://github.com/BrokenColor/Kafka-learning/blob/master/files/%E5%A4%9A%E5%89%AF%E6%9C%AC%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.jpg) 
