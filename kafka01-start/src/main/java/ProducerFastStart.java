@@ -1,6 +1,7 @@
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
 
@@ -19,10 +20,10 @@ public class ProducerFastStart {
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, brokerList);
         //key序列化
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-                "org.apache.kafka.common.serialization.StringSerializer");
+                StringSerializer.class.getName());
         //key序列化
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-                "org.apache.kafka.common.serialization.StringSerializer");
+                StringSerializer.class.getName());
         //自己直生产者客户端参数并创建KafkaProducer 实例
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
         //构建需要发送的消息
