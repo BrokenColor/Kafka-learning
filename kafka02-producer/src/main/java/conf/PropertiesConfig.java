@@ -20,6 +20,7 @@ public class PropertiesConfig {
         prop.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         prop.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());
         prop.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrap_servers);
+        prop.put(ProducerConfig.RETRIES_CONFIG,10);//重试次数
         return prop;
     }
 }
